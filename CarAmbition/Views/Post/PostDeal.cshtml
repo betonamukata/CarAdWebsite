@@ -1,0 +1,420 @@
+﻿@model CarAmbition.Models.BangTam
+
+@{
+    ViewBag.Title = "PostDeal";
+    Layout = "~/Views/UserLayout/UserLayout.cshtml";
+}
+
+@section tab
+{
+    <style>
+        .title {
+            background-color: #04470c;
+            text-align: center;
+            color: #ffffff;
+            margin-top: -20px;
+        }
+
+        .title-box {
+            margin-left: 10px;
+            width: 100%;
+        }
+
+        #slider {
+            display: none;
+        }
+
+        .main-content {
+            float: left;
+            width: 68%;
+            margin-left: 75px;
+        }
+
+        .guide {
+            background-image: url("/Content/Image/bg-upload-area1.png");
+            width: 120px;
+            height: 90px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        #btn {
+            cursor: pointer;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            opacity: 0;
+            -moz-opacity: 0;
+        }
+
+        #result {
+            margin-top: 100px;
+        }
+
+            #result div {
+                margin-top: 30px;
+            }
+
+        .button {
+            float: right;
+        }
+
+        .btn {
+            background-color: #04470c;
+            color: #ffffff;
+            font-size: large;
+        }
+
+        #submitbutton {
+            margin-left: 10px;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+
+        .left-column {
+            float: left;
+            width: 46%;
+            margin-left: 20px;
+        }
+
+        .right-column {
+            float: right;
+            width: 46%;
+        }
+
+        .left-column1 {
+            float: left;
+            margin-left: 20px;
+        }
+
+        #rowitem label {
+            text-align: left;
+            margin-right: -10px;
+            margin-bottom: 20px;
+            width: 30%;
+        }
+
+        .col-md-10 {
+            margin-top: 5px;
+            width: 47%;
+        }
+
+        #rowitem1 label {
+            text-align: left;
+            margin-right: -90px;
+            margin-bottom: 20px;
+            width: 30%;
+        }
+
+        #valid {
+            color: #ff0000;
+        }
+    </style>
+    <div class="main-content">
+        <div class="title">
+            <h2>TRANG ĐĂNG TIN</h2>
+        </div>
+        @using (Html.BeginForm("Submit", "Post", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true)
+                <div class="title-box">
+                    <hr />
+                    <h3>Thông tin mô tả</h3>
+                    <hr />
+                </div>
+
+                <div class="left-column">
+                    <div class="form-group" id="rowitem">
+                        @Html.LabelFor(model => model.HangXe, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("HangXe", new SelectListItem[] { new SelectListItem() { Text = "Acura", Value = "Acura", Selected = true },
+                                new SelectListItem() { Text = "Audi", Value = "Audi", Selected = false }, new SelectListItem() { Text = "BMW", Value = "BMW", Selected = false },
+                                new SelectListItem() { Text = "Chevrolet", Value = "Chevrolet", Selected = false }, new SelectListItem() { Text = "Daewoo", Value = "Daewoo", Selected = false },
+                                new SelectListItem() { Text = "Fiat", Value = "Fiat", Selected = false }, new SelectListItem() { Text = "Fort", Value = "Fort", Selected = false },
+                                new SelectListItem() { Text = "Honda", Value = "Honda", Selected = false }, new SelectListItem() { Text = "Hyundai", Value = "Hyundai", Selected = false },
+                                new SelectListItem() { Text = "Isuzu", Value = "Isuzu", Selected = false }, new SelectListItem() { Text = "Kia", Value = "Kia", Selected = false },
+                                new SelectListItem() { Text = "LandRover", Value = "LandRover", Selected = false }, new SelectListItem() { Text = "Lexus", Value = "Lexus", Selected = false },
+                                new SelectListItem() { Text = "Mazda", Value = "Mazda", Selected = false }, new SelectListItem() { Text = "Mercedes-Benz", Value = "Mercedes-Benz", Selected = false },
+                                new SelectListItem() { Text = "Mitsubishi", Value = "Mitsubishi", Selected = false }, new SelectListItem() { Text = "Nissan", Value = "Nissan", Selected = false },
+                                new SelectListItem() { Text = "Suzuki", Value = "Suzuki", Selected = false }, new SelectListItem() { Text = "Thaco", Value = "Thaco", Selected = false },
+                                new SelectListItem() { Text = "Toyota", Value = "Toyota", Selected = false }, new SelectListItem() { Text = "Volkswagen", Value = "Volkswagen", Selected = false },
+                                new SelectListItem() { Text = "Xe tải", Value = "Xe tải", Selected = false } })
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="rowitem">
+                        @Html.LabelFor(model => model.LoaiXe, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.LoaiXe)
+                            <br />
+                            @Html.ValidationMessageFor(model => model.LoaiXe)
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="rowitem">
+                        @Html.LabelFor(model => model.NamSanXuat, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.NamSanXuat)
+                            <br />
+                            @Html.ValidationMessageFor(model => model.NamSanXuat)
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="rowitem">
+                        @Html.LabelFor(model => model.PhienBan, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.PhienBan)
+                            <br />
+                            @Html.ValidationMessageFor(model => model.PhienBan)
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="rowitem">
+                        @Html.LabelFor(model => model.XuatXu, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("XuatXu", new SelectListItem[] { new SelectListItem() { Text = "Trong nước", Value = "Trong nước", Selected = true },
+                                new SelectListItem() { Text = "Nhập khẩu", Value = "Nhập khẩu", Selected = false } })
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="rowitem">
+                        @Html.LabelFor(model => model.TinhTrang, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("TinhTrang", new SelectListItem[] { new SelectListItem() { Text = "Mới", Value = "true", Selected = true },
+                                new SelectListItem() { Text = "Cũ", Value = "false", Selected = false } })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-column">
+                    <div class="form-group" id="rowitem">
+                        @Html.LabelFor(model => model.MauNgoaiThat, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("MauNgoaiThat", new SelectListItem[] { new SelectListItem() { Text = "Bạc", Value = "Bạc", Selected = true },
+                                new SelectListItem() { Text = "Hồng", Value = "Hồng", Selected = false }, new SelectListItem() { Text = "Kem (Be)", Value = "Kem (Be)", Selected = false },
+                                new SelectListItem() { Text = "Nâu", Value = "Nâu", Selected = false }, new SelectListItem() { Text = "Đỏ", Value = "Đỏ", Selected = false },
+                                new SelectListItem() { Text = "Xám", Value = "Xám", Selected = false }, new SelectListItem() { Text = "Đen", Value = "Đen", Selected = false },
+                                new SelectListItem() { Text = "Tím", Value = "Tím", Selected = false }, new SelectListItem() { Text = "Trắng", Value = "Trắng", Selected = false },
+                                new SelectListItem() { Text = "Vàng", Value = "Vàng", Selected = false }, new SelectListItem() { Text = "Xanh lam", Value = "Xanh lam", Selected = false },
+                                new SelectListItem() { Text = "Xanh lục", Value = "Xanh lục", Selected = false }, new SelectListItem() { Text = "Hai màu", Value = "Hai màu", Selected = false },
+                                new SelectListItem() { Text = "Màu khác", Value = "Màu khác", Selected = false } })
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="rowitem">
+                        @Html.LabelFor(model => model.MauNoiThat, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("MauNoiThat", new SelectListItem[] { new SelectListItem() { Text = "Bạc", Value = "Bạc", Selected = true },
+                                new SelectListItem() { Text = "Hồng", Value = "Hồng", Selected = false }, new SelectListItem() { Text = "Kem (Be)", Value = "Kem (Be)", Selected = false },
+                                new SelectListItem() { Text = "Nâu", Value = "Nâu", Selected = false }, new SelectListItem() { Text = "Đỏ", Value = "Đỏ", Selected = false },
+                                new SelectListItem() { Text = "Xám", Value = "Xám", Selected = false }, new SelectListItem() { Text = "Đen", Value = "Đen", Selected = false },
+                                new SelectListItem() { Text = "Tím", Value = "Tím", Selected = false }, new SelectListItem() { Text = "Trắng", Value = "Trắng", Selected = false },
+                                new SelectListItem() { Text = "Vàng", Value = "Vàng", Selected = false }, new SelectListItem() { Text = "Xanh lam", Value = "Xanh lam", Selected = false },
+                                new SelectListItem() { Text = "Xanh lục", Value = "Xanh lục", Selected = false }, new SelectListItem() { Text = "Hai màu", Value = "Hai màu", Selected = false },
+                                new SelectListItem() { Text = "Màu khác", Value = "Màu khác", Selected = false } })
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="rowitem">
+                        @Html.LabelFor(model => model.DangXe, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("DangXe", new SelectListItem[] { new SelectListItem() { Text = "Sedan", Value = "Sedan", Selected = true },
+                                new SelectListItem() { Text = "SUV", Value = "SUV", Selected = false }, new SelectListItem() { Text = "Coupe", Value = "Coupe", Selected = false },
+                                new SelectListItem() { Text = "CUV", Value = "CUV", Selected = false }, new SelectListItem() { Text = "Hatchback", Value = "Hatchback", Selected = false },
+                                new SelectListItem() { Text = "Convertible", Value = "Convertible", Selected = false }, new SelectListItem() { Text = "Truck", Value = "Truck", Selected = false },
+                                new SelectListItem() { Text = "Van/Minivan", Value = "Van/Minivan", Selected = false }, new SelectListItem() { Text = "Wagon", Value = "Wagon", Selected = false },
+                                new SelectListItem() { Text = "MPV", Value = "MPV", Selected = false }, new SelectListItem() { Text = "Pick-up Truck", Value = "Pick-up Truck", Selected = false },
+                                new SelectListItem() { Text = "Sport Car", Value = "Sport Car", Selected = false }, new SelectListItem() { Text = "City Car", Value = "City Car", Selected = false } })
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="rowitem">
+                        @Html.LabelFor(model => model.SoKm, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.SoKm)
+                            <br />
+                            @Html.ValidationMessageFor(model => model.SoKm)
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="rowitem">
+                        @Html.LabelFor(model => model.GiaBan, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.GiaBan)
+                            <br />
+                            @Html.ValidationMessageFor(model => model.GiaBan)
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="rowitem">
+                        @Html.LabelFor(model => model.DonVi, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("DonVi", new SelectListItem[] { new SelectListItem() { Text = "Triệu đồng", Value = "true", Selected = true }, new SelectListItem() { Text = "USD", Value = "false", Selected = false } })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content" style="display: inline-block">
+                    <div class="left-column1">
+                        <div class="form-group" id="rowitem1">
+                            @Html.LabelFor(model => model.TieuDe, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.TieuDe, new { cols = 90, @rows = 1 })
+                                <br />
+                                @Html.ValidationMessageFor(model => model.TieuDe)
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="rowitem1">
+                            @Html.LabelFor(model => model.NoiDung, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.NoiDung, new { cols = 90, @rows = 3 })
+                                <br />
+                                @Html.ValidationMessageFor(model => model.NoiDung)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="title-box">
+                    <hr />
+                    <h3>Thông số xe</h3>
+                    <hr />
+                </div>
+
+                <div class="left-column">
+                    <div class="form-group" id="rowitem">
+                        @Html.LabelFor(model => model.SoCua, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.SoCua)
+                            <br />
+                            @Html.ValidationMessageFor(model => model.SoCua)
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="rowitem">
+                        @Html.LabelFor(model => model.SoCho, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.SoCho)
+                            <br />
+                            @Html.ValidationMessageFor(model => model.SoCho)
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="rowitem">
+                        @Html.LabelFor(model => model.HopSo, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("HopSo", new SelectListItem[] { new SelectListItem() { Text = "Số tay", Value = "Số tay", Selected = true },
+                                new SelectListItem() { Text = "Số tự động", Value = "Số tự động", Selected = false }, new SelectListItem() { Text = "Số hỗn hợp", Value = "Số hỗn hợp", Selected = false } })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-column">
+                    <div class="form-group" id="rowitem">
+                        @Html.LabelFor(model => model.DanDong, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("DanDong", new SelectListItem[] { new SelectListItem() { Text = "FWD - Dẫn động cầu trước", Value = "FWD - Dẫn động cầu trước", Selected = true },
+                                new SelectListItem() { Text = "RFD - Dẫn động cầu sau", Value = "RFD - Dẫn động cầu sau", Selected = false },
+                                new SelectListItem() { Text = "4WD - Dẫn động 4 bánh", Value = "4WD - Dẫn động 4 bánh", Selected = false },
+                                new SelectListItem() { Text = "AWD - 4 bánh toàn thời gian", Value = "AWD - 4 bánh toàn thời gian", Selected = false },
+                                new SelectListItem() { Text = "4WD hoặc AWD", Value = "4WD hoặc AWD", Selected = false } })
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="rowitem">
+                        @Html.LabelFor(model => model.NhienLieu, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("NhienLieu", new SelectListItem[] { new SelectListItem() { Text = "Xăng", Value = "Xăng", Selected = true },
+                                new SelectListItem() { Text = "Diesel", Value = "Diesel", Selected = false }, new SelectListItem() { Text = "Hybird", Value = "Hybird", Selected = false },
+                                new SelectListItem() { Text = "Điện", Value = "Điện", Selected = false }, new SelectListItem() { Text = "Loại khác", Value = "Loại khác", Selected = false } })
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="rowitem">
+                        @Html.LabelFor(model => model.MucTieuThu, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.MucTieuThu)
+                            <br />
+                            @Html.ValidationMessageFor(model => model.MucTieuThu)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="title-box" style="display: inline-block">
+                    <hr />
+                    <h3>Hình ảnh</h3>
+                    <hr />
+                </div>
+            </div>
+            <div class="guide" style="display: inline-block">
+                <input id="btn" type="file" name="files" value="" multiple="multiple" />
+                <br />
+                <output id="result" />
+            </div>
+
+            <div class="descrip-info">
+                <div class="button">
+                    <input type="submit" value="ĐĂNG TIN" id="submitbutton" class="btn btn-success">
+                </div>
+            </div>
+        }
+    </div>
+    <script>
+        window.onload = function () {
+            if (window.File && window.FileList && window.FileReader) {
+                var filesInput = document.getElementById("btn");
+                filesInput.addEventListener("change", function (event) {
+                    var files = event.target.files;
+                    var output = document.getElementById("result");
+                    for (var i = 0; i < files.length; i++) {
+                        var file = files[i];
+                        if (!file.type.match('image'))
+                            continue;
+                        var picReader = new FileReader();
+                        picReader.addEventListener("load", function (event) {
+                            var picFile = event.target;
+                            var div = document.createElement("div");
+                            div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" +
+                                    "title='" + picFile.name + "'/> <div style='margin-top: -38px; margin-left: 90px'> <a href='#' class='remove_pict'>Hủy</a></div";
+                            output.insertBefore(div, null);
+                            div.children[1].addEventListener("click", function (event) {
+                                div.parentNode.removeChild(div);
+                            });
+                        });
+                        picReader.readAsDataURL(file);
+                    }
+                });
+            }
+        }
+    </script>
+}
+@section banner {
+    <style>
+        .ad-banner {
+            float: right;
+            width: 25%;
+            display: inline-block;
+            position: relative;
+        }
+    </style>
+    <div class="ad-banner">
+        <a href="#" target="_blank" rel="nofollow">
+            <img src="~/Content/Image/ChevroletGiaiPhong_SlideLeftDown_isHome_100x300_DungNT5.gif" />
+        </a>
+        <a href="#" target="_blank" rel="nofollow">
+            <img src="~/Content/Image/A1_ChevroletHaNoi_isHome_100x300_DungNt5.gif" />
+        </a>
+        <a href="#" target="_blank" rel="nofollow">
+            <img src="~/Content/Image/ToyotaCauDien_SlideRightUp_Home_100x300.gif" />
+        </a>
+        <br />
+        <a href="#" target="_blank" rel="nofollow">
+            <img src="~/Content/Image/E2_KiaBienHoa_isHome_300x250_QuynhDTT.gif" />
+        </a>
+    </div>
+}

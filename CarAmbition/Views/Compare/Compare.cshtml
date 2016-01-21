@@ -1,0 +1,118 @@
+﻿@using CarAmbition.Models;
+@model List<Xe>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/UserLayout/UserLayout.cshtml";
+}
+
+@section tab
+{
+    <style>
+        #slider {
+            display: none;
+        }
+
+        .main-content {
+            float: left;
+            width: 68%;
+            display: inline-block;
+            margin-left: 75px;
+        }
+
+        .class {
+            border: 1px solid rgba(0,0,0,.5);
+            width: 50%;
+            float: left;
+        }
+
+        .class-content {
+            margin-left: 10px;
+            padding-bottom: 20px;
+        }
+
+            .class-content input {
+                width: 80%;
+                font-size: 20px;
+                font-style: italic;
+            }
+
+            .class-content ul {
+                list-style-type: none;
+                font-weight: 500;
+            }
+
+            .class-content a:hover {
+                text-decoration: none;
+            }
+
+        .selectedCar {
+            border: 1px solid rgba(0,0,0,.5);
+            width: 49%;
+            float: right;
+        }
+
+        #selectedCar-content {
+            margin-left: 10px;
+            padding-bottom: 20px;
+        }
+    </style>
+    <div class="main-content">
+        <div class="class">
+            <div class="class-content">
+                <h3>Dòng Xe</h3>
+                @Html.TextBox("searchCarTxt", "", new { placeholder = "Tìm dòng xe" })
+                <br />
+                <ul style=" overflow: auto; height: 450px; margin-top: 15px">
+                    @foreach (var item in Model)
+                    {
+                        var a = item.HangXe + " " + item.LoaiXe + " " + item.PhienBan + " " + item.NamSanXuat;
+                        <li><a href="#" id="car" style="font-size:20px;" onclick="myFunction(@a)" title="@a">@a</a></li>
+
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="selectedCar">
+            <div id="selectedCar-content">
+                <h3>Xe đã chọn</h3>
+            </div>
+        </div>
+
+        <script>
+            var item = document.getElementById("car").title;
+            function myFunction(item) {
+                var para = document.createElement("P");
+                var t = document.createTextNode(document.getElementById("car").title);
+                para.appendChild(t);
+                document.getElementById("selectedCar-content").appendChild(para);
+            }
+        </script>
+    </div>
+}
+
+@section banner {
+    <style>
+        .ad-banner {
+            float: right;
+            width: 25%;
+            display: inline-block;
+            position: relative;
+        }
+    </style>
+
+    <div class="ad-banner">
+        <a href="#" target="_blank" rel="nofollow">
+            <img src="~/Content/Image/ChevroletGiaiPhong_SlideLeftDown_isHome_100x300_DungNT5.gif" />
+        </a>
+        <a href="#" target="_blank" rel="nofollow">
+            <img src="~/Content/Image/A1_ChevroletHaNoi_isHome_100x300_DungNt5.gif" />
+        </a>
+        <a href="#" target="_blank" rel="nofollow">
+            <img src="~/Content/Image/ToyotaCauDien_SlideRightUp_Home_100x300.gif" />
+        </a>
+        <br />
+        <a href="#" target="_blank" rel="nofollow">
+            <img src="~/Content/Image/E2_KiaBienHoa_isHome_300x250_QuynhDTT.gif" />
+        </a>
+    </div>
+}

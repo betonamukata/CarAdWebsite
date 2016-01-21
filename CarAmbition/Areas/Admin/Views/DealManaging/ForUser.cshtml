@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "ForUser";
+    Layout = "~/Areas/Admin/Views/AdminLayout/AdminLayout.cshtml";
+}
+<h2>Quản Lý Tin Bán Theo Tài Khoản</h2>
+
+@using (@Html.BeginForm("DealForUser", "DealManaging", FormMethod.Post))
+{
+    <div>
+        @Html.TextBox("userTxt", "", htmlAttributes: new { @class = "userTextBox", @placeholder = "Nhập tên tài khoản cần tìm...   " })
+        <button type="submit" id="submitBtn" class="btn btn-default" style="margin-top:-9px; height:30px">Tìm</button>
+    </div>
+}

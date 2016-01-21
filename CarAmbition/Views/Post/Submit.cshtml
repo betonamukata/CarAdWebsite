@@ -1,0 +1,85 @@
+﻿@{
+    Layout = "~/Views/UserLayout/UserLayout.cshtml";
+    ViewBag.Title = "Submit";
+}
+@section tab {
+    <style>
+        #slider {
+            display: none;
+        }
+
+        .main-content {
+            float: left;
+            width: 68%;
+            display: inline-block;
+            margin-left: 75px;
+        }
+
+        .inform {
+            background-color: #00ff90;
+        }
+
+        .rowitem {
+            margin-left: 10px;
+        }
+    </style>
+    <div class="main-content">
+        <div class="inform">
+            <div class="rowitem">
+                <br />
+                <label>Tin đăng của bạn đã được gửi lên hệ thống của Car-Ambition.</label>
+                <br />
+                <br />
+            </div>
+            <div class="rowitem">
+            </div>
+            <div class="rowitem">
+                <label>Bạn đang sử dụng tính năng đăng tin nhanh của Car-Ambition, tin đăng của bạn hoàn toàn miễn phí.</label>
+                <br />
+                <br />
+            </div>
+            <div class="rowitem">
+                <label>Chúng tôi luôn sẵn sàng giải đáp mọi thắc mắc của bạn. Nếu có bất kỳ khó khăn gì trong việc sử dụng website nói chung, hãy </label>
+                <span><a class="contact" href="@Url.Action("Contact", "Home")">liên hệ</a></span>
+                <span> với chúng tôi.</span>
+                <br />
+                <br />
+            </div>
+            <div class="rowitem">
+                <label>Cảm ơn bạn đã luôn tin tưởng dịch vụ của Car-Ambition.</label>
+                <br />
+                <br />
+            </div>
+            <div class="rowitem">
+                <a class="returnhome" href="@Url.Action("Home", "Home")">Về trang chủ</a>
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+}
+@section banner {
+    <style>
+        .ad-banner {
+            float: right;
+            width: 25%;
+            display: inline-block;
+            position: relative;
+        }
+    </style>
+    <div class="ad-banner">
+        <a href="#" target="_blank" rel="nofollow">
+            <img src="~/Content/Image/ChevroletGiaiPhong_SlideLeftDown_isHome_100x300_DungNT5.gif" />
+        </a>
+        <a href="#" target="_blank" rel="nofollow">
+            <img src="~/Content/Image/A1_ChevroletHaNoi_isHome_100x300_DungNt5.gif" />
+        </a>
+        <a href="#" target="_blank" rel="nofollow">
+            <img src="~/Content/Image/ToyotaCauDien_SlideRightUp_Home_100x300.gif" />
+        </a>
+        <br />
+        <a href="#" target="_blank" rel="nofollow">
+            <img src="~/Content/Image/E2_KiaBienHoa_isHome_300x250_QuynhDTT.gif" />
+        </a>
+    </div>
+}

@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "ForCar";
+    Layout = "~/Areas/Admin/Views/AdminLayout/AdminLayout.cshtml";
+}
+
+<h2>Quản Lý Tin Bán Theo Xe</h2>
+
+@using (@Html.BeginForm("DealForCar", "DealManaging", FormMethod.Post))
+{
+    <div>
+        @Html.TextBox("carTxt", "", htmlAttributes: new { @class = "userTextBox", @placeholder = "Nhập tên xe cần tìm...   " })
+        <button type="submit" id="submitBtn" class="btn btn-default" style="margin-top:-9px; height:30px">Tìm</button>
+    </div>
+}
+
+

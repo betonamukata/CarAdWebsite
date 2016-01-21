@@ -1,0 +1,122 @@
+﻿@{
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="shortcut icon" href="~/Content/Image/car1.png">
+    <title>Car-Ambition</title>
+    <link href="~/Content/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/UserLayoutCss.css" rel="stylesheet" />
+    <link href="~/Content/User/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Content/User/jquery-1.11.3.min.js"></script>
+    <script src="~/Content/User/bootstrap.min.js"></script>
+    <link href="~/Content/Nivo%20slider/nivo-slider.css" rel="stylesheet" />
+    <script src="~/Content/Nivo%20slider/jquery.nivo.slider.pack.js"></script>
+    <link href="~/Content/Nivo%20slider/default.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="full-page">
+        <nav class="navbar navbar-default" id="header-bar" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header" id="header-item-bar">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="@Url.Action("Home", "Home", new { ViewBag.Username })" style="font-size:30px;"><i class="fa fa-car"></i> Car-Ambition</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    @if (Session["Account"] != null)
+                    {
+                        <ul class="nav navbar-nav navbar-right" id="sign">
+                            @if (Session["Role"] == "admin")
+                            {
+                                <li class="dropdown" style="z-index:2;">
+                                    <a class="dropdown-toggle" id="display" data-toggle="dropdown" href="#">
+                                        <i class="halflings-icon white user"></i> @Session["Account"]
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" id="menu" style="z-index:2;">
+                                        <li><a href=@Url.Action("Manage", "Manage", new { Area = "Admin" })><i class="halflings-icon user"></i> Quản Lý</a></li>
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                                <li><a href="#">@Session["Account"].ToString()</a></li>
+                            }
+                            <li><a>|</a></li>
+                            <li><a href=@Url.Action("Logout", "User")>Đăng Xuất</a></li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul class="nav navbar-nav navbar-right" id="sign">
+                            <li><a href=@Url.Action("Login", "User")>Đăng Nhập</a></li>
+                            <li><a>|</a></li>
+                            <li><a href="@Url.Action("Register", "User")">Đăng Ký</a></li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </nav>
+        <nav class="navbar navbar-default" id="menu-bar" role="navigation" style="z-index:1;">
+            <div class="container">
+                <ul id="item-menu">
+                    <li><a href="@Url.Action("Home", "Home")"><i class="fa fa-home"></i> Trang Chủ</a></li>
+                    <li><a href="@Url.Action("Deal", "Deal")">Tin Bán</a></li>
+                    <li><a href="@Url.Action("Search", "Search")">Tìm Kiếm</a></li>
+                    @if (Session["Account"] != null)
+                    {
+                        <li><a href="@Url.Action("PostDeal", "Post")">Đăng Tin</a></li>
+                    }
+                </ul>
+                <a id="post-deal" href="@Url.Action("Contact", "Home")">Liên Hệ</a>
+            </div>
+        </nav>
+        <div id="slider" class="nivoSlider">
+            <img src="~/Content/Image/a.png" alt="" />
+            <img src="~/Content/Image/b.png" alt="" />
+            <img src="~/Content/Image/c.png" alt="" />
+            <img src="~/Content/Image/d.png" alt="" />
+        </div>
+        <br />
+        @RenderSection("tab", false)
+        @RenderSection("banner", false)
+        <div style="clear:both"></div>
+        @RenderBody()
+        <br />
+        <nav id="footer-bar" role="navigation">
+            <div class="footer">
+                <br />
+                Ambition Group - All Rights Reserved
+                <br />
+                © Copyright 2016
+            </div>
+            <br />
+        </nav>
+    </div>
+    <script type="text/javascript">
+        $(window).load(function () {
+            $('#slider').nivoSlider({
+                prevText: '',
+                nextText: '',
+                pauseTime: 3000,
+                controlNav: false,
+            });
+        });
+        $('#search-icon').click(function () {
+            if ($('#searchTxt').val() == "") {
+                alert("Thông tin tìm kiếm không được để trống !!!");
+                return false;
+            }
+        })
+    </script>
+</body>
+</html>

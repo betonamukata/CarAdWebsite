@@ -1,0 +1,223 @@
+﻿@model CarAmbition.Models.BangTam
+
+@{
+    ViewBag.Title = "PostDeal";
+    Layout = "~/Views/UserLayout/UserLayout.cshtml";
+}
+
+@section tab
+{
+    <style>
+        .title {
+            background-color: #04470c;
+            text-align: center;
+            color: #ffffff;
+            margin-top: -20px;
+        }
+
+        .title-box {
+            margin-left: 10px;
+            width: 100%;
+        }
+
+        #slider {
+            display: none;
+        }
+
+        .main-content {
+            float: left;
+            width: 68%;
+            margin-left: 75px;
+        }
+
+        #btn {
+            cursor: pointer;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            opacity: 0;
+            -moz-opacity: 0;
+        }
+
+        #result {
+            margin-top: 100px;
+        }
+
+            #result div {
+                margin-top: 30px;
+            }
+
+        .button {
+            float: right;
+            margin-top: 100px;
+            margin-right: 50px;
+        }
+
+        .btn {
+            background-color: #04470c;
+            color: #ffffff;
+            font-size: large;
+        }
+
+        #submitbutton {
+            margin-left: 10px;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+
+        .left-column {
+            float: left;
+            width: 46%;
+            margin-left: 20px;
+        }
+
+        .right-column {
+            float: right;
+            width: 46%;
+        }
+
+        #rowitem label {
+            text-align: left;
+            margin-right: -10px;
+            margin-bottom: 20px;
+            width: 30%;
+        }
+
+        .col-md-10 {
+            margin-top: 5px;
+            width: 43%;
+        }
+
+        #rowlabel {
+            text-align: left;
+            width: 53%;
+        }
+
+        #valid {
+            color: #ff0000;
+        }
+    </style>
+    <div class="main-content">
+        <div class="title">
+            <h2>Tìm kiếm tin bán xe</h2>
+        </div>
+        @using (Html.BeginForm("SearchResult", "Search", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true)
+                <div class="left-column">
+                    <div class="form-group" id="rowitem">
+                        @Html.LabelFor(model => model.HangXe, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("HangXe", new SelectListItem[] { new SelectListItem() { Text = "Acura", Value = "Acura", Selected = true },
+                                new SelectListItem() { Text = "Audi", Value = "Audi", Selected = false }, new SelectListItem() { Text = "BMW", Value = "BMW", Selected = false },
+                                new SelectListItem() { Text = "Chevrolet", Value = "Chevrolet", Selected = false }, new SelectListItem() { Text = "Daewoo", Value = "Daewoo", Selected = false },
+                                new SelectListItem() { Text = "Fiat", Value = "Fiat", Selected = false }, new SelectListItem() { Text = "Fort", Value = "Fort", Selected = false },
+                                new SelectListItem() { Text = "Honda", Value = "Honda", Selected = false }, new SelectListItem() { Text = "Hyundai", Value = "Hyundai", Selected = false },
+                                new SelectListItem() { Text = "Isuzu", Value = "Isuzu", Selected = false }, new SelectListItem() { Text = "Kia", Value = "Kia", Selected = false },
+                                new SelectListItem() { Text = "LandRover", Value = "LandRover", Selected = false }, new SelectListItem() { Text = "Lexus", Value = "Lexus", Selected = false },
+                                new SelectListItem() { Text = "Mazda", Value = "Mazda", Selected = false }, new SelectListItem() { Text = "Mercedes-Benz", Value = "Mercedes-Benz", Selected = false },
+                                new SelectListItem() { Text = "Mitsubishi", Value = "Mitsubishi", Selected = false }, new SelectListItem() { Text = "Nissan", Value = "Nissan", Selected = false },
+                                new SelectListItem() { Text = "Suzuki", Value = "Suzuki", Selected = false }, new SelectListItem() { Text = "Thaco", Value = "Thaco", Selected = false },
+                                new SelectListItem() { Text = "Toyota", Value = "Toyota", Selected = false }, new SelectListItem() { Text = "Volkswagen", Value = "Volkswagen", Selected = false },
+                                new SelectListItem() { Text = "Xe tải", Value = "Xe tải", Selected = false } })
+                            <br />
+                            @Html.ValidationMessageFor(model => model.HangXe)
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="rowitem">
+                        @Html.LabelFor(model => model.NamSanXuat, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("NamSanXuat", new SelectListItem[] { new SelectListItem() { Text = "Trước năm 1992", Value = "1992", Selected = true },
+                                new SelectListItem() { Text = "1992 - 2000", Value = "2000", Selected = false },
+                                new SelectListItem() { Text = "2001 - 2005", Value = "2005", Selected = false },
+                                new SelectListItem() { Text = "2006 - 2010", Value = "2010", Selected = false },
+                                new SelectListItem() { Text = "2011 tới nay", Value = "999999", Selected = false },
+                       })
+                            <br />
+                            @Html.ValidationMessageFor(model => model.NamSanXuat)
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="rowitem">
+                        @Html.LabelFor(model => model.TinhTrang, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("TinhTrang", new SelectListItem[] { new SelectListItem() { Text = "Mới", Value = "true", Selected = true },
+                                new SelectListItem() { Text = "Cũ", Value = "false", Selected = false } })
+                            <br />
+                            @Html.ValidationMessageFor(model => model.TinhTrang)
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="rowitem">
+                        @Html.LabelFor(model => model.DonVi, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("DonVi", new SelectListItem[] { new SelectListItem() { Text = "Triệu đồng", Value = "true", Selected = true }, new SelectListItem() { Text = "USD", Value = "false", Selected = false } })
+                            <br />
+                            @Html.ValidationMessageFor(model => model.DonVi)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-column">
+                    <div class="form-group" id="rowitem">
+                        <div id="rowlabel">@Html.Label("Giá Bán Từ")</div>                        
+                        <div class="col-md-10">
+                            @Html.DropDownList("GiaBanTu", new SelectListItem[] { new SelectListItem() { Text = "100", Value = "100", Selected = true },
+                                new SelectListItem() { Text = "200", Value = "200", Selected = false }, new SelectListItem() { Text = "500", Value = "500", Selected = false },
+                                new SelectListItem() { Text = "1.000", Value = "1000", Selected = false }, new SelectListItem() { Text = "2.000", Value = "2000", Selected = false },
+                                new SelectListItem() { Text = "5.000", Value = "5000", Selected = false }, new SelectListItem() { Text = "10.000", Value = "10000", Selected = false } })
+                            <br />
+                            @Html.ValidationMessageFor(model => model.GiaBan)
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="rowitem">
+                        <div id="rowlabel">@Html.Label("Đến Giá Bán")</div>
+                        <div class="col-md-10">
+                            @Html.DropDownList("DenGiaBan", new SelectListItem[] { new SelectListItem() { Text = "100", Value = "100", Selected = true },
+                                new SelectListItem() { Text = "200", Value = "200", Selected = false }, new SelectListItem() { Text = "500", Value = "500", Selected = false },
+                                new SelectListItem() { Text = "1.000", Value = "1000", Selected = false }, new SelectListItem() { Text = "2.000", Value = "2000", Selected = false },
+                                new SelectListItem() { Text = "5.000", Value = "5000", Selected = false }, new SelectListItem() { Text = "10.000", Value = "10000", Selected = false },
+                                new SelectListItem() { Text = " > 10.000", Value = "999999", Selected = false } })
+                            <br />
+                            @Html.ValidationMessageFor(model => model.GiaBan)
+                        </div>
+                    </div>                    
+                </div>
+                <div class="button">
+                    <input type="submit" value="TÌM KIẾM" id="searchbutton" class="btn btn-success">
+                </div>
+            </div>
+        }
+    </div>
+}
+@section banner {
+    <style>
+        .ad-banner {
+            float: right;
+            width: 25%;
+            display: inline-block;
+            position: relative;
+        }
+    </style>
+    <div class="ad-banner">
+        <a href="#" target="_blank" rel="nofollow">
+            <img src="~/Content/Image/ChevroletGiaiPhong_SlideLeftDown_isHome_100x300_DungNT5.gif" />
+        </a>
+        <a href="#" target="_blank" rel="nofollow">
+            <img src="~/Content/Image/A1_ChevroletHaNoi_isHome_100x300_DungNt5.gif" />
+        </a>
+        <a href="#" target="_blank" rel="nofollow">
+            <img src="~/Content/Image/ToyotaCauDien_SlideRightUp_Home_100x300.gif" />
+        </a>
+        <br />
+        <a href="#" target="_blank" rel="nofollow">
+            <img src="~/Content/Image/E2_KiaBienHoa_isHome_300x250_QuynhDTT.gif" />
+        </a>
+    </div>
+}

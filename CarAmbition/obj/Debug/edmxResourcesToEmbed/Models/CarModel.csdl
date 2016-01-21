@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="CarEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BangTams" EntityType="CarModel.BangTam" />
+    <EntitySet Name="BanTins" EntityType="CarModel.BanTin" />
+    <EntitySet Name="ChiTietHinhs" EntityType="CarModel.ChiTietHinh" />
+    <EntitySet Name="HinhTams" EntityType="CarModel.HinhTam" />
+    <EntitySet Name="NguoiDungs" EntityType="CarModel.NguoiDung" />
+    <EntitySet Name="PhanQuyens" EntityType="CarModel.PhanQuyen" />
+    <EntitySet Name="Quyens" EntityType="CarModel.Quyen" />
+    <EntitySet Name="sysdiagrams" EntityType="CarModel.sysdiagram" />
+    <EntitySet Name="Xes" EntityType="CarModel.Xe" />
+    <AssociationSet Name="FK__BangTam__TaiKhoa__0C85DE4D" Association="CarModel.FK__BangTam__TaiKhoa__0C85DE4D">
+      <End Role="NguoiDung" EntitySet="NguoiDungs" />
+      <End Role="BangTam" EntitySet="BangTams" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HinhTam__MaTam__0F624AF8" Association="CarModel.FK__HinhTam__MaTam__0F624AF8">
+      <End Role="BangTam" EntitySet="BangTams" />
+      <End Role="HinhTam" EntitySet="HinhTams" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BanTin__MaXe__08B54D69" Association="CarModel.FK__BanTin__MaXe__08B54D69">
+      <End Role="Xe" EntitySet="Xes" />
+      <End Role="BanTin" EntitySet="BanTins" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BanTin__TaiKhoan__09A971A2" Association="CarModel.FK__BanTin__TaiKhoan__09A971A2">
+      <End Role="NguoiDung" EntitySet="NguoiDungs" />
+      <End Role="BanTin" EntitySet="BanTins" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ChiTietHin__MaXe__1273C1CD" Association="CarModel.FK__ChiTietHin__MaXe__1273C1CD">
+      <End Role="Xe" EntitySet="Xes" />
+      <End Role="ChiTietHinh" EntitySet="ChiTietHinhs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PhanQuyen__TaiKh__05D8E0BE" Association="CarModel.FK__PhanQuyen__TaiKh__05D8E0BE">
+      <End Role="NguoiDung" EntitySet="NguoiDungs" />
+      <End Role="PhanQuyen" EntitySet="PhanQuyens" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PhanQuyen__MaQuy__04E4BC85" Association="CarModel.FK__PhanQuyen__MaQuy__04E4BC85">
+      <End Role="Quyen" EntitySet="Quyens" />
+      <End Role="PhanQuyen" EntitySet="PhanQuyens" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BangTam">
+    <Key>
+      <PropertyRef Name="MaTam" />
+    </Key>
+    <Property Name="MaTam" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HangXe" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="LoaiXe" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NamSanXuat" Type="Int16" />
+    <Property Name="PhienBan" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="XuatXu" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="TinhTrang" Type="Boolean" />
+    <Property Name="MauNoiThat" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="MauNgoaiThat" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DangXe" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="SoKm" Type="Int16" />
+    <Property Name="GiaBan" Type="Int16" />
+    <Property Name="DonVi" Type="Boolean" />
+    <Property Name="SoCua" Type="Int16" />
+    <Property Name="SoCho" Type="Int16" />
+    <Property Name="HopSo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DanDong" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="NhienLieu" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="MucTieuThu" Type="Int16" />
+    <Property Name="TieuDe" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDung" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="NgayDang" Type="DateTime" Precision="0" />
+    <Property Name="TaiKhoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="NguoiDung" Relationship="CarModel.FK__BangTam__TaiKhoa__0C85DE4D" FromRole="BangTam" ToRole="NguoiDung" />
+    <NavigationProperty Name="HinhTams" Relationship="CarModel.FK__HinhTam__MaTam__0F624AF8" FromRole="BangTam" ToRole="HinhTam" />
+  </EntityType>
+  <EntityType Name="BanTin">
+    <Key>
+      <PropertyRef Name="MaBanTin" />
+    </Key>
+    <Property Name="MaBanTin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TieuDe" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDung" Type="String" Nullable="false" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="NgayDang" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="HinhAnh" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MaXe" Type="Int32" />
+    <Property Name="TaiKhoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="HanDang" Type="Boolean" />
+    <NavigationProperty Name="Xe" Relationship="CarModel.FK__BanTin__MaXe__08B54D69" FromRole="BanTin" ToRole="Xe" />
+    <NavigationProperty Name="NguoiDung" Relationship="CarModel.FK__BanTin__TaiKhoan__09A971A2" FromRole="BanTin" ToRole="NguoiDung" />
+  </EntityType>
+  <EntityType Name="ChiTietHinh">
+    <Key>
+      <PropertyRef Name="MaCT" />
+    </Key>
+    <Property Name="MaCT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HinhTo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HinhNho" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MaXe" Type="Int32" />
+    <NavigationProperty Name="Xe" Relationship="CarModel.FK__ChiTietHin__MaXe__1273C1CD" FromRole="ChiTietHinh" ToRole="Xe" />
+  </EntityType>
+  <EntityType Name="HinhTam">
+    <Key>
+      <PropertyRef Name="MaHinhTam" />
+    </Key>
+    <Property Name="MaHinhTam" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HinhTo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HinhNho" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MaTam" Type="Int32" />
+    <NavigationProperty Name="BangTam" Relationship="CarModel.FK__HinhTam__MaTam__0F624AF8" FromRole="HinhTam" ToRole="BangTam" />
+  </EntityType>
+  <EntityType Name="NguoiDung">
+    <Key>
+      <PropertyRef Name="TaiKhoan" />
+    </Key>
+    <Property Name="TaiKhoan" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MatKhau" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="HoTen" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DienThoai" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="XacNhanMatKhau" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BangTams" Relationship="CarModel.FK__BangTam__TaiKhoa__0C85DE4D" FromRole="NguoiDung" ToRole="BangTam" />
+    <NavigationProperty Name="BanTins" Relationship="CarModel.FK__BanTin__TaiKhoan__09A971A2" FromRole="NguoiDung" ToRole="BanTin" />
+    <NavigationProperty Name="PhanQuyens" Relationship="CarModel.FK__PhanQuyen__TaiKh__05D8E0BE" FromRole="NguoiDung" ToRole="PhanQuyen" />
+  </EntityType>
+  <EntityType Name="PhanQuyen">
+    <Key>
+      <PropertyRef Name="MaQuyen" />
+      <PropertyRef Name="TaiKhoan" />
+    </Key>
+    <Property Name="MaQuyen" Type="Int32" Nullable="false" />
+    <Property Name="TaiKhoan" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MoTa" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="NguoiDung" Relationship="CarModel.FK__PhanQuyen__TaiKh__05D8E0BE" FromRole="PhanQuyen" ToRole="NguoiDung" />
+    <NavigationProperty Name="Quyen" Relationship="CarModel.FK__PhanQuyen__MaQuy__04E4BC85" FromRole="PhanQuyen" ToRole="Quyen" />
+  </EntityType>
+  <EntityType Name="Quyen">
+    <Key>
+      <PropertyRef Name="MaQuyen" />
+    </Key>
+    <Property Name="MaQuyen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenQuyen" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PhanQuyens" Relationship="CarModel.FK__PhanQuyen__MaQuy__04E4BC85" FromRole="Quyen" ToRole="PhanQuyen" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Xe">
+    <Key>
+      <PropertyRef Name="MaXe" />
+    </Key>
+    <Property Name="MaXe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HangXe" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="LoaiXe" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NamSanXuat" Type="Int16" Nullable="false" />
+    <Property Name="PhienBan" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="XuatXu" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="TinhTrang" Type="Boolean" />
+    <Property Name="MauNoiThat" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="MauNgoaiThat" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DangXe" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="SoKm" Type="Int16" Nullable="false" />
+    <Property Name="GiaBan" Type="Int16" Nullable="false" />
+    <Property Name="DonVi" Type="Boolean" />
+    <Property Name="SoCua" Type="Int16" />
+    <Property Name="SoCho" Type="Int16" />
+    <Property Name="HopSo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DanDong" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="NhienLieu" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="MucTieuThu" Type="Int16" />
+    <NavigationProperty Name="BanTins" Relationship="CarModel.FK__BanTin__MaXe__08B54D69" FromRole="Xe" ToRole="BanTin" />
+    <NavigationProperty Name="ChiTietHinhs" Relationship="CarModel.FK__ChiTietHin__MaXe__1273C1CD" FromRole="Xe" ToRole="ChiTietHinh" />
+  </EntityType>
+  <Association Name="FK__BangTam__TaiKhoa__0C85DE4D">
+    <End Type="CarModel.NguoiDung" Role="NguoiDung" Multiplicity="0..1" />
+    <End Type="CarModel.BangTam" Role="BangTam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NguoiDung">
+        <PropertyRef Name="TaiKhoan" />
+      </Principal>
+      <Dependent Role="BangTam">
+        <PropertyRef Name="TaiKhoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HinhTam__MaTam__0F624AF8">
+    <End Type="CarModel.BangTam" Role="BangTam" Multiplicity="0..1" />
+    <End Type="CarModel.HinhTam" Role="HinhTam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BangTam">
+        <PropertyRef Name="MaTam" />
+      </Principal>
+      <Dependent Role="HinhTam">
+        <PropertyRef Name="MaTam" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BanTin__MaXe__08B54D69">
+    <End Type="CarModel.Xe" Role="Xe" Multiplicity="0..1" />
+    <End Type="CarModel.BanTin" Role="BanTin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Xe">
+        <PropertyRef Name="MaXe" />
+      </Principal>
+      <Dependent Role="BanTin">
+        <PropertyRef Name="MaXe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BanTin__TaiKhoan__09A971A2">
+    <End Type="CarModel.NguoiDung" Role="NguoiDung" Multiplicity="0..1" />
+    <End Type="CarModel.BanTin" Role="BanTin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NguoiDung">
+        <PropertyRef Name="TaiKhoan" />
+      </Principal>
+      <Dependent Role="BanTin">
+        <PropertyRef Name="TaiKhoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ChiTietHin__MaXe__1273C1CD">
+    <End Type="CarModel.Xe" Role="Xe" Multiplicity="0..1" />
+    <End Type="CarModel.ChiTietHinh" Role="ChiTietHinh" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Xe">
+        <PropertyRef Name="MaXe" />
+      </Principal>
+      <Dependent Role="ChiTietHinh">
+        <PropertyRef Name="MaXe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PhanQuyen__TaiKh__05D8E0BE">
+    <End Type="CarModel.NguoiDung" Role="NguoiDung" Multiplicity="1" />
+    <End Type="CarModel.PhanQuyen" Role="PhanQuyen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NguoiDung">
+        <PropertyRef Name="TaiKhoan" />
+      </Principal>
+      <Dependent Role="PhanQuyen">
+        <PropertyRef Name="TaiKhoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PhanQuyen__MaQuy__04E4BC85">
+    <End Type="CarModel.Quyen" Role="Quyen" Multiplicity="1" />
+    <End Type="CarModel.PhanQuyen" Role="PhanQuyen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quyen">
+        <PropertyRef Name="MaQuyen" />
+      </Principal>
+      <Dependent Role="PhanQuyen">
+        <PropertyRef Name="MaQuyen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

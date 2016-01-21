@@ -1,0 +1,182 @@
+﻿@using CarAmbition.Models;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<CarAmbition.Models.BanTin>
+
+@{
+    ViewBag.Title = "SearchResult";
+    Layout = "~/Views/UserLayout/UserLayout.cshtml";
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<style>
+    #slider {
+        display: none;
+    }
+</style>
+@section tab {
+    <style>
+        #slider {
+            display: none;
+        }
+
+        .main-content {
+            float: left;
+            width: 68%;
+            margin-left: 75px;
+        }
+
+        #auto-tab {
+            width: 100%;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            border-radius: 0px 0px 5px 5px;
+            padding-bottom: 14px;
+        }
+
+            #auto-tab a {
+                color: #04470c;
+            }
+
+        .sell-car-griditem {
+            width: 211.9px;
+            height: 400px;
+            float: left;
+            margin-right: 20px;
+            margin-left: 20px;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+            .sell-car-griditem:hover {
+                border: 1px solid #e6e6e6;
+                box-shadow: 0 10px 12px 0 #ebebeb,0px -10px 12px 0 #ebebeb;
+            }
+
+        #title {
+            padding-bottom: 100px;
+        }
+
+            #title a:hover {
+                text-decoration: none;
+                color: #1a621a;
+            }
+
+        #active li {
+            color: #04470c;
+        }
+
+        #newcar a, #mostcar a {
+            color: #04470c;
+        }
+
+        .pagination {
+            margin-left: 40%;
+        }
+
+            .pagination li a {
+                color: #04470c;
+            }
+    </style>
+
+    <div class="main-content">
+        @{
+            if (ViewBag.Flag == true && ViewBag.KeyWord != "")
+            {
+                <ul class="nav nav-tabs" id="tab">
+                    <li class="active" id="newcar"><a href="#newest">Kết quả tìm kiếm</a></li>
+                </ul>
+                <div class="tab-content" id="auto-tab">
+                    <div id="newest" class="tab-pane fade in active">
+                        <div>@ViewBag.Notification</div>
+                        @{ foreach (var item in Model)
+                         {
+                            <div class="sell-car-griditem">
+                                <div class="photo">
+                                    <a href="@Url.Action("DetailView", "Home", new { @mabantin = item.MaBanTin})"><img src="~/Content/@item.HinhAnh" style="width:210px; height:118px;"></a>
+                                </div>
+                                <div class="info">
+                                    @if (item.HanDang == true)
+                                    {
+                                        <h3 class="rowitem tit" id="title" style="height: 60px;"><a class="opensanslistauto" href="@Url.Action("DetailView", "Home", new { @mabantin = item.MaBanTin})">@item.TieuDe (Hết hạn)</a></h3>
+                                    }
+                                    else
+                                    {
+                                        <h3 class="rowitem tit" id="title" style="height: 60px;"><a class="opensanslistauto" href="@Url.Action("DetailView", "Home", new { @mabantin = item.MaBanTin})">@item.TieuDe</a></h3>
+                                    }
+                                    <div class="fixheightinfo" style="height: 83px;">
+                                        <div class="rowitem">
+                                            <label class="name">Tình trạng</label>
+                                            @if (@item.Xe.TinhTrang == true)
+                                            {<span class="content">: Mới</span>}
+                                            else
+                                            {<span class="content">: Cũ</span>}
+                                        </div>
+
+                                        <div class="rowitem">
+                                            <label class="name">Xuất xứ</label>
+                                            <span class="content">: @item.Xe.XuatXu</span>
+                                        </div>
+                                        <div class="rowitem">
+                                            <label class="name">Km</label>
+                                            <span class="content">: @item.Xe.SoKm</span>
+                                        </div>
+                                        <div class="rowitem">
+                                            <label class="name">Hộp số</label>
+                                            <span class="content">: @item.Xe.HopSo</span>
+                                        </div>
+                                        <div class="rowitem">
+                                            <div class="price">
+                                                Giá bán: @item.Xe.GiaBan
+                                                @if (@item.Xe.DonVi == true)
+                                                {<span class="content"> Triệu VND</span>}
+                                                else
+                                                {<span class="content"> USD</span>}
+                                            </div>
+                                            <div class="location">Địa chỉ: @item.NguoiDung.DiaChi</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                         }
+                        }
+                    </div>
+                </div>
+                if (Model.PageCount > 1)
+                {
+                    <p>
+                        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+                        @Html.PagedListPager(Model, page => Url.Action("SearchResult", "Search", new { page = page, @fKW = ViewBag.KeyWord }))
+                    </p>
+                }
+            }
+            else
+            {<h1>Không tìm thấy kết quả</h1>}
+        }
+    </div>
+}
+@section banner {
+    <style>
+        .ad-banner {
+            float: right;
+            width: 25%;
+            display: inline-block;
+            position: relative;
+        }
+    </style>
+    <div class="ad-banner">
+        <a href="#" target="_blank" rel="nofollow">
+            <img src="~/Content/Image/ChevroletGiaiPhong_SlideLeftDown_isHome_100x300_DungNT5.gif" />
+        </a>
+        <a href="#" target="_blank" rel="nofollow">
+            <img src="~/Content/Image/A1_ChevroletHaNoi_isHome_100x300_DungNt5.gif" />
+        </a>
+        <a href="#" target="_blank" rel="nofollow">
+            <img src="~/Content/Image/ToyotaCauDien_SlideRightUp_Home_100x300.gif" />
+        </a>
+        <br />
+        <a href="#" target="_blank" rel="nofollow">
+            <img src="~/Content/Image/E2_KiaBienHoa_isHome_300x250_QuynhDTT.gif" />
+        </a>
+    </div>
+}
+

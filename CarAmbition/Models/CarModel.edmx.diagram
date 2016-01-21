@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="50081727122945a882767835322aaf6e" Name="Diagram1">
+        <EntityTypeShape EntityType="CarModel.BangTam" Width="1.5" PointX="3" PointY="12.25" />
+        <EntityTypeShape EntityType="CarModel.BanTin" Width="1.5" PointX="3" PointY="7.25" />
+        <EntityTypeShape EntityType="CarModel.ChiTietHinh" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="CarModel.HinhTam" Width="1.5" PointX="5.25" PointY="14.125" />
+        <EntityTypeShape EntityType="CarModel.NguoiDung" Width="1.5" PointX="0.75" PointY="7.25" />
+        <EntityTypeShape EntityType="CarModel.PhanQuyen" Width="1.5" PointX="6" PointY="7.75" />
+        <EntityTypeShape EntityType="CarModel.Quyen" Width="1.5" PointX="3.75" PointY="4" />
+        <EntityTypeShape EntityType="CarModel.sysdiagram" Width="1.5" PointX="5.75" PointY="1.875" />
+        <EntityTypeShape EntityType="CarModel.Xe" Width="1.5" PointX="0.75" PointY="1.25" />
+        <AssociationConnector Association="CarModel.FK__BangTam__TaiKhoa__0C85DE4D" />
+        <AssociationConnector Association="CarModel.FK__HinhTam__MaTam__0F624AF8" />
+        <AssociationConnector Association="CarModel.FK__BanTin__MaXe__08B54D69" />
+        <AssociationConnector Association="CarModel.FK__BanTin__TaiKhoan__09A971A2" />
+        <AssociationConnector Association="CarModel.FK__ChiTietHin__MaXe__1273C1CD" />
+        <AssociationConnector Association="CarModel.FK__PhanQuyen__TaiKh__05D8E0BE" />
+        <AssociationConnector Association="CarModel.FK__PhanQuyen__MaQuy__04E4BC85" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

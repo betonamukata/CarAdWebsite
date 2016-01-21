@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CarModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BangTam">
+    <Key>
+      <PropertyRef Name="MaTam" />
+    </Key>
+    <Property Name="MaTam" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HangXe" Type="nvarchar" MaxLength="20" />
+    <Property Name="LoaiXe" Type="nvarchar" MaxLength="20" />
+    <Property Name="NamSanXuat" Type="smallint" />
+    <Property Name="PhienBan" Type="nvarchar" MaxLength="20" />
+    <Property Name="XuatXu" Type="nvarchar" MaxLength="20" />
+    <Property Name="TinhTrang" Type="bit" />
+    <Property Name="MauNoiThat" Type="nvarchar" MaxLength="20" />
+    <Property Name="MauNgoaiThat" Type="nvarchar" MaxLength="20" />
+    <Property Name="DangXe" Type="nvarchar" MaxLength="20" />
+    <Property Name="SoKm" Type="smallint" />
+    <Property Name="GiaBan" Type="smallint" />
+    <Property Name="DonVi" Type="bit" />
+    <Property Name="SoCua" Type="smallint" />
+    <Property Name="SoCho" Type="smallint" />
+    <Property Name="HopSo" Type="nvarchar" MaxLength="20" />
+    <Property Name="DanDong" Type="nvarchar" MaxLength="30" />
+    <Property Name="NhienLieu" Type="nvarchar" MaxLength="20" />
+    <Property Name="MucTieuThu" Type="smallint" />
+    <Property Name="TieuDe" Type="nvarchar" MaxLength="100" />
+    <Property Name="NoiDung" Type="nvarchar" MaxLength="3000" />
+    <Property Name="NgayDang" Type="smalldatetime" />
+    <Property Name="TaiKhoan" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="BanTin">
+    <Key>
+      <PropertyRef Name="MaBanTin" />
+    </Key>
+    <Property Name="MaBanTin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TieuDe" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="NoiDung" Type="nvarchar" MaxLength="3000" Nullable="false" />
+    <Property Name="NgayDang" Type="smalldatetime" Nullable="false" />
+    <Property Name="HinhAnh" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MaXe" Type="int" />
+    <Property Name="TaiKhoan" Type="varchar" MaxLength="20" />
+    <Property Name="HanDang" Type="bit" />
+  </EntityType>
+  <EntityType Name="ChiTietHinh">
+    <Key>
+      <PropertyRef Name="MaCT" />
+    </Key>
+    <Property Name="MaCT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HinhTo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="HinhNho" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MaXe" Type="int" />
+  </EntityType>
+  <EntityType Name="HinhTam">
+    <Key>
+      <PropertyRef Name="MaHinhTam" />
+    </Key>
+    <Property Name="MaHinhTam" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HinhTo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="HinhNho" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MaTam" Type="int" />
+  </EntityType>
+  <EntityType Name="NguoiDung">
+    <Key>
+      <PropertyRef Name="TaiKhoan" />
+    </Key>
+    <Property Name="TaiKhoan" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="MatKhau" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DienThoai" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="XacNhanMatKhau" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PhanQuyen">
+    <Key>
+      <PropertyRef Name="MaQuyen" />
+      <PropertyRef Name="TaiKhoan" />
+    </Key>
+    <Property Name="MaQuyen" Type="int" Nullable="false" />
+    <Property Name="TaiKhoan" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="MoTa" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Quyen">
+    <Key>
+      <PropertyRef Name="MaQuyen" />
+    </Key>
+    <Property Name="MaQuyen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenQuyen" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Xe">
+    <Key>
+      <PropertyRef Name="MaXe" />
+    </Key>
+    <Property Name="MaXe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HangXe" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="LoaiXe" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="NamSanXuat" Type="smallint" Nullable="false" />
+    <Property Name="PhienBan" Type="nvarchar" MaxLength="20" />
+    <Property Name="XuatXu" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TinhTrang" Type="bit" />
+    <Property Name="MauNoiThat" Type="nvarchar" MaxLength="20" />
+    <Property Name="MauNgoaiThat" Type="nvarchar" MaxLength="20" />
+    <Property Name="DangXe" Type="nvarchar" MaxLength="20" />
+    <Property Name="SoKm" Type="smallint" Nullable="false" />
+    <Property Name="GiaBan" Type="smallint" Nullable="false" />
+    <Property Name="DonVi" Type="bit" />
+    <Property Name="SoCua" Type="smallint" />
+    <Property Name="SoCho" Type="smallint" />
+    <Property Name="HopSo" Type="nvarchar" MaxLength="20" />
+    <Property Name="DanDong" Type="nvarchar" MaxLength="30" />
+    <Property Name="NhienLieu" Type="nvarchar" MaxLength="20" />
+    <Property Name="MucTieuThu" Type="smallint" />
+  </EntityType>
+  <Association Name="FK__BangTam__TaiKhoa__0C85DE4D">
+    <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
+    <End Role="BangTam" Type="Self.BangTam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NguoiDung">
+        <PropertyRef Name="TaiKhoan" />
+      </Principal>
+      <Dependent Role="BangTam">
+        <PropertyRef Name="TaiKhoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BanTin__MaXe__08B54D69">
+    <End Role="Xe" Type="Self.Xe" Multiplicity="0..1" />
+    <End Role="BanTin" Type="Self.BanTin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Xe">
+        <PropertyRef Name="MaXe" />
+      </Principal>
+      <Dependent Role="BanTin">
+        <PropertyRef Name="MaXe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BanTin__TaiKhoan__09A971A2">
+    <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
+    <End Role="BanTin" Type="Self.BanTin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NguoiDung">
+        <PropertyRef Name="TaiKhoan" />
+      </Principal>
+      <Dependent Role="BanTin">
+        <PropertyRef Name="TaiKhoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ChiTietHin__MaXe__1273C1CD">
+    <End Role="Xe" Type="Self.Xe" Multiplicity="0..1" />
+    <End Role="ChiTietHinh" Type="Self.ChiTietHinh" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Xe">
+        <PropertyRef Name="MaXe" />
+      </Principal>
+      <Dependent Role="ChiTietHinh">
+        <PropertyRef Name="MaXe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HinhTam__MaTam__0F624AF8">
+    <End Role="BangTam" Type="Self.BangTam" Multiplicity="0..1" />
+    <End Role="HinhTam" Type="Self.HinhTam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BangTam">
+        <PropertyRef Name="MaTam" />
+      </Principal>
+      <Dependent Role="HinhTam">
+        <PropertyRef Name="MaTam" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PhanQuyen__MaQuy__04E4BC85">
+    <End Role="Quyen" Type="Self.Quyen" Multiplicity="1" />
+    <End Role="PhanQuyen" Type="Self.PhanQuyen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quyen">
+        <PropertyRef Name="MaQuyen" />
+      </Principal>
+      <Dependent Role="PhanQuyen">
+        <PropertyRef Name="MaQuyen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PhanQuyen__TaiKh__05D8E0BE">
+    <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
+    <End Role="PhanQuyen" Type="Self.PhanQuyen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NguoiDung">
+        <PropertyRef Name="TaiKhoan" />
+      </Principal>
+      <Dependent Role="PhanQuyen">
+        <PropertyRef Name="TaiKhoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CarModelStoreContainer">
+    <EntitySet Name="BangTam" EntityType="Self.BangTam" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BanTin" EntityType="Self.BanTin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChiTietHinh" EntityType="Self.ChiTietHinh" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HinhTam" EntityType="Self.HinhTam" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NguoiDung" EntityType="Self.NguoiDung" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhanQuyen" EntityType="Self.PhanQuyen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quyen" EntityType="Self.Quyen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Xe" EntityType="Self.Xe" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__BangTam__TaiKhoa__0C85DE4D" Association="Self.FK__BangTam__TaiKhoa__0C85DE4D">
+      <End Role="NguoiDung" EntitySet="NguoiDung" />
+      <End Role="BangTam" EntitySet="BangTam" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BanTin__MaXe__08B54D69" Association="Self.FK__BanTin__MaXe__08B54D69">
+      <End Role="Xe" EntitySet="Xe" />
+      <End Role="BanTin" EntitySet="BanTin" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BanTin__TaiKhoan__09A971A2" Association="Self.FK__BanTin__TaiKhoan__09A971A2">
+      <End Role="NguoiDung" EntitySet="NguoiDung" />
+      <End Role="BanTin" EntitySet="BanTin" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ChiTietHin__MaXe__1273C1CD" Association="Self.FK__ChiTietHin__MaXe__1273C1CD">
+      <End Role="Xe" EntitySet="Xe" />
+      <End Role="ChiTietHinh" EntitySet="ChiTietHinh" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HinhTam__MaTam__0F624AF8" Association="Self.FK__HinhTam__MaTam__0F624AF8">
+      <End Role="BangTam" EntitySet="BangTam" />
+      <End Role="HinhTam" EntitySet="HinhTam" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PhanQuyen__MaQuy__04E4BC85" Association="Self.FK__PhanQuyen__MaQuy__04E4BC85">
+      <End Role="Quyen" EntitySet="Quyen" />
+      <End Role="PhanQuyen" EntitySet="PhanQuyen" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PhanQuyen__TaiKh__05D8E0BE" Association="Self.FK__PhanQuyen__TaiKh__05D8E0BE">
+      <End Role="NguoiDung" EntitySet="NguoiDung" />
+      <End Role="PhanQuyen" EntitySet="PhanQuyen" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

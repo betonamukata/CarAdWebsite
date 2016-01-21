@@ -1,0 +1,64 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<CarAmbition.Models.NguoiDung>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/AdminLayout.cshtml";
+}
+
+<h2>Danh sách các tài khoản quyền quản trị</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().TaiKhoan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().HoTen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().DienThoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().DiaChi)
+        </th>
+        <th>
+            Tên Quyền
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaiKhoan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DienThoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @item.PhanQuyens.Select(s => s.Quyen.TenQuyen).First()
+            </td>
+        </tr>
+    }
+</table>
+@if (Model.PageCount > 1)
+{
+    <p>
+        Trang @(Model.PageNumber < Model.PageCount ? 0 : Model.PageNumber) / @Model.PageCount
+        @Html.PagedListPager(Model, page => @Url.Action("Index", new { page = page }))
+    </p>
+}
